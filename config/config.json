@@ -2,14 +2,14 @@
   "development": {
     "username": "root",
     "password": "process.env.SHOTS_DB_PWD",
-    "database": "passport_demo",
+    "database": "vaccine",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "process.env.SHOTS_DB_PWD",
-    "database": "database_test",
+    "database": "vaccine",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
