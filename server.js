@@ -5,6 +5,7 @@ const session = require("express-session");
 const passport = require("./config/passport");
 // Set Handlebars.
 const exphbs = require('express-handlebars');
+// stuff for morgan
 const fs = require("fs");
 const morgan = require("morgan");
 const path = require("path");
@@ -24,15 +25,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
-// log only 4xx and 5xx responses to console
-// app.use(morgan('dev', {
-//   skip: function (req, res) { return res.statusCode < 400 }
-// }));
-
-// app.use(morgan('common', {
-//   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-// }))
 
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
