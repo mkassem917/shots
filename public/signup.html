@@ -34,6 +34,11 @@
             <input type="text" class="form-control" id="last-input" placeholder="Last Name">
           </div>
           <div>
+            <button id="find-me">Show my location</button><br />
+            <p id="status"></p>
+            <a id="map-link" target="_blank"></a>
+          </div>
+          <div>
             <label for="exampleInputEmail1">State of Residence</label><br>
             <select name="state" id="state-input">
               <option value="" selected="selected"></option>
@@ -95,10 +100,10 @@
             <input type="value" class="form-control" id="age-input" placeholder="Age">
           </div>
           <label for="essential-input">Are you an essential Worker?</label><br>
-            <select id="essential-input" name="essential">
-              <option value="false">No</option>
-              <option value="true">Yes</option>
-            </select><br>
+          <select id="essential-input" name="essential">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select><br>
           <div style="display: none" id="alert" class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
@@ -110,7 +115,7 @@
       </div>
     </div>
   </div>
-
+  <script src="js/geo-location.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
   <script type="text/javascript" src="js/statedata.js"></script>

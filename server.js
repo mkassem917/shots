@@ -5,6 +5,10 @@ const session = require("express-session");
 const passport = require("./config/passport");
 // Set Handlebars.
 const exphbs = require('express-handlebars');
+// stuff for morgan
+const fs = require("fs");
+const morgan = require("morgan");
+const path = require("path");
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
@@ -21,6 +25,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+ 
+// setup the logger
+app.use(morgan('combined', { stream: accessLogStream }))
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 // Requiring our routes
