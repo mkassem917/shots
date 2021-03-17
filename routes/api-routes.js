@@ -6,17 +6,26 @@ module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
+  // app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
+  //   res.json({
+  //     email: req.user.email,
+  //     id: req.user.id
+  //   });
+  // });
+
+  // ROUTES - findOne by id 
+
+  app.get('/api/user/:id', (req, res) => {
+    db.User.findOne({
+      where: {
+        id: req.params.id,
+      },
+      // include: [db.Author],
+    }).then((dbUser) => res.json(dbUser));
   });
 
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
+
 
   //Sign up to be added for vaccine list
   // User will need to fill out info to sign up for vaccine
