@@ -1,4 +1,3 @@
-
         $(document).ready(function () {
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function (p) {
@@ -9,6 +8,7 @@
             } else
                 ipLookup();
         });
+
 
         function showUserDetails(latitude, longitude, additional) {
             var position = latitude + "," + longitude;
