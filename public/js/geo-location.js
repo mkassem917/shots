@@ -16,14 +16,16 @@
             $("#latitude").text(latitude);
             $("#longitude").text(longitude);
 
-            var url = "https://www.google.com/maps/embed/v1/view?center="+position+"&zoom=12&key=AIzaSyBDHRQ1mpF_Jp1SKvGZXgxlnaYuD4pmA2I";
+            var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBDHRQ1mpF_Jp1SKvGZXgxlnaYuD4pmA2I&q=covid-19+vaccination+clinic," +position;
             $("iframe").attr('src', url);
 
             if (typeof additional != "undefined") {
                 $("#country").text(additional.country.name);
+                // $("#state").text(additional.state.name);
                 $("#city").text(additional.city.name);
                 $("#continent").text(additional.continent.name);
             }
+            // console.log(additional.state.name);
         }
 
         function ipLookup() {
