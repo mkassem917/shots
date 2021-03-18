@@ -4,7 +4,7 @@ const session = require("express-session");
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
 // Set Handlebars.
-const exphbs = require('express-handlebars');
+const exphbs = require("express-handlebars");
 // stuff for morgan
 const fs = require("fs");
 const morgan = require("morgan");
@@ -16,24 +16,36 @@ const db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 app.use(express.static("public"));
 // We need to use sessions to keep track of our user's login status
 app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
 // create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
- 
-// setup the logger
-app.use(morgan('combined', { stream: accessLogStream }))
+const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
+  flags: "a"
+});
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+// setup the logger
+app.use(morgan("combined", {
+  stream: accessLogStream
+}));
+
+app.engine("handlebars", exphbs({
+  defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
@@ -41,6 +53,7 @@ require("./routes/api-routes.js")(app);
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
