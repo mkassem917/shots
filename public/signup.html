@@ -5,6 +5,7 @@
   <title>Passport Authentication</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
@@ -34,9 +35,9 @@
             <input type="text" class="form-control" id="last-input" placeholder="Last Name">
           </div>
           <div>
-            <button id="find-me">Show my location</button><br />
-            <p id="status"></p>
-            <a id="map-link" target="_blank"></a>
+            <div id="map">
+              <iframe frameborder="0" style="border:0; width: 100%;height:300px;" src="" allowfullscreen></iframe>
+          </div>
           </div>
           <div>
             <label for="exampleInputEmail1">State of Residence</label><br>
@@ -115,6 +116,7 @@
       </div>
     </div>
   </div>
+  
   <script src="js/geo-location.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
