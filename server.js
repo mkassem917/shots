@@ -9,11 +9,9 @@ const exphbs = require("express-handlebars");
 const fs = require("fs");
 const morgan = require("morgan");
 const path = require("path");
-
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
-
 // Creating express app and configuring middleware needed for authentication
 const app = express();
 app.use(express.urlencoded({
@@ -31,31 +29,29 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
   flags: "a"
 });
-
 // setup the logger
 app.use(morgan("combined", {
   stream: accessLogStream
 }));
-
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 // Requiring our routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
-
+// require("./routes/html-routes.js")(app);
+// require("./routes/api-routes.js")(app);
+const routes = require("./routes/api-routes");
+app.use(routes);
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     // eslint-disable-next-line no-console
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      "==> :earth_americas:  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
     );
