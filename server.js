@@ -9,11 +9,9 @@ const exphbs = require("express-handlebars");
 const fs = require("fs");
 const morgan = require("morgan");
 const path = require("path");
-
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
-
 // Creating express app and configuring middleware needed for authentication
 const app = express();
 app.use(express.urlencoded({
@@ -31,17 +29,14 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
   flags: "a"
 });
-
 // setup the logger
 app.use(morgan("combined", {
   stream: accessLogStream
 }));
-
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
@@ -57,7 +52,7 @@ db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     // eslint-disable-next-line no-console
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      "==> :earth_americas:  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
     );
