@@ -2,6 +2,7 @@
 const db = require("../models/user.js");
 const express = require("express");
 const router = express.Router();
+
 // ROUTES - findOne by id
 router.get("/api/user/:id", (req, res) => {
   db.User.findOne({
@@ -42,3 +43,4 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 module.exports = router;
+
