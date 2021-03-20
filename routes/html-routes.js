@@ -18,13 +18,33 @@ module.exports = (app) => {
     })
       .then((user) => {
         console.log(user.dataValues);
-        res.render("userdata", {title: "UserData", person: user.dataValues });
+        res.render("userdata", { title: "UserData", person: user.dataValues, key: process.env.COVIDACTNOW_API });
       })
       .catch((err) => {
         res.status(401).json(err);
       });
   });
 
+  // app.get("/test", (req, res) => {
+  //   res.render("userdata", {
+  //     person: {
+  //       email: "jacqueline@jr.com",
+  //       first_name: "Jacqueline",
+  //       last_name: "Ross",
+  //       state: "MI",
+  //       age: "30",
+  //       essential_worker: false,
+  //     },
+  //     key: process.env.COVIDACTNOW_API
+  //   });
+  // });
+  // fetch("https://httpbin.org/post", {
+  //   method: "post",
+  //   body: JSON.stringify(body),
+  //   headers: { "Content-Type": "application/json" },
+  // })
+  //   .then((res) => res.json())
+  //   .then((json) => console.log(json));
 };
 
 // // Requiring path to so we can use relative routes to our HTML files
