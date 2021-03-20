@@ -1,8 +1,29 @@
+const db = require("../models");
+
 module.exports = (app) => {
   // Home page (Sign-up Form)
   app.get("/", (req, res) => {
     res.render("index", { title: "vaccine" });
   });
+
+  app.post("/", (req, res) => {
+    console.log(req.body);
+    db.User.create({
+      email: req.body.email,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      state: req.body.state,
+      age: req.body.age,
+      essential_worker: req.body.essential_worker,
+    })
+      .then((user) => {
+        res.render("userdata", {title: "UserData", person: user });
+      })
+      .catch((err) => {
+        res.status(401).json(err);
+      });
+  });
+
 };
 
 // // Requiring path to so we can use relative routes to our HTML files
