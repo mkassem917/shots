@@ -1,9 +1,9 @@
 // Requiring necessary npm packages
 const express = require("express");
 const session = require("express-session");
+//const fetch = require('node-fetch');
 
-// Requiring passport as we've configured it
-const passport = require("./config/passport");
+
 // Set Handlebars.
 const exphbs = require("express-handlebars");
 
@@ -31,8 +31,7 @@ app.use(
     saveUninitialized: true
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
+
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
   flags: "a"
