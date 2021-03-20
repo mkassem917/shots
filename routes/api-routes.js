@@ -1,19 +1,16 @@
 // Requiring our models and passport as we've configured it
-const db = require("../models/user.js");
+const db = require("../models");
 const express = require("express");
 const router = express.Router();
 
-// ROUTES - findOne by id
-router.get("/api/user/:id", (req, res) => {
-  db.User.findOne({
-    where: {
-      id: req.params.id,
-    },
-  }).then((dbUser) => res.json(dbUser));
+// Our Routes //
+
+// Home page (Sign-up Form)
+router.get("/", (req, res) => {
+  res.render("index");
 });
-//Sign up to be added for vaccine list
-// User will need to fill out info to sign up for vaccine
-// Needs email, age, if they are an essential worker (Boolean like in the burgers homework), and state of residence. Possibly add password too
+
+// Sign-up Route posts to database 
 router.post("/api/signup", (req, res) => {
   db.User.create({
     email: req.body.email,
@@ -30,6 +27,9 @@ router.post("/api/signup", (req, res) => {
       res.status(401).json(err);
     });
 });
+
+// ROUTES - findOne by id -- one of these has got to go :) 
+
 router.get("/api/userData/:id", (req, res) => {
   console.log("reads this route");
   const condition = `id =${req.params.id}`;
@@ -39,8 +39,14 @@ router.get("/api/userData/:id", (req, res) => {
   console.log(userData);
   res.render("index", userData);
 });
-router.get("/", (req, res) => {
-  res.render("index");
-});
-module.exports = router;
 
+
+router.get("/api/user/:id", (req, res) => {
+  db.User.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((dbUser) => res.json(dbUser));
+});
+
+module.exports = router;
