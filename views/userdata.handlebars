@@ -1,11 +1,91 @@
 <div class="card text-center">
 
   <div class="card-body">
-    <h3 class="card-title">Hi {{person.first_name}} from {{ person.state }} </h3>
-    <h6 class="card-text">Active Cases in <span id="userState">{{ person.state }}</span>: <span id="cases"></span></h6>
-    <a href="#" class="btn btn-warning" id="riskLevelMed"></a>
-    <a href="#" class="btn btn-danger" id="riskLevelHigh"></a>
-    <a href="#" class="btn btn-success" id="riskLevelLow"></a>
+    <h2 class="card-title"> {{person.first_name}} </h2>
+    <h3> Welcome to the VAX-Track </h3>
+
+    <h6 class="card-text">Active Cases in {{ person.state }}</span>: <span id="cases"></span></h6>
+
+    {{!-- low --}}
+    <div class="card mb-3" style="max-width: 540px;" id="zero">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/zero.png" class="card-img" alt="zero">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+            <h6 class="card-text">Your are in an area with Low Risk</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- medium --}}
+    <div class="card mb-3" style="max-width: 540px;" id="one">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/one.png" class="card-img" alt="one">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+            <h6 class="card-text">Your are in an area with Medium Risk</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- high --}}
+    <div class="card mb-3" style="max-width: 540px;" id="twothree">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/twothree.png" class="card-img" alt="twothree">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+            <h6 class="card-text">Your are in an area with High Risk</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- very high risk --}}
+    <div class="card mb-3" style="max-width: 540px;" id="four">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/four.png" class="card-img" alt="four">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+            <h6 class="card-text">Your are in an area with a Very High Risk</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- severe --}}
+    <div class="card mb-3" style="max-width: 540px;" id="five">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/img/five.png" class="card-img" alt="five">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+            <h6 class="card-text">Your are in an area with Severe Risk</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h6>Are you Eligible?</h6>
   </div>
 
@@ -13,7 +93,7 @@
 <script>
 
   $(document).ready(() => {
-    const key = "{{key}}"; 
+    const key = "{{key}}";
     const userState = "{{ person.state }}";
     console.log(userState);
     // node fetch
@@ -28,23 +108,41 @@
     }).then((response) => {
       console.log(response.url);
       $("#userState").append(response.state);
-      $("#cases").append(response.actuals.cases);
 
-      if (response.riskLevels.overall === "2" || "3" || "4" || "5") {
-        $("#riskLevelHigh").append("Critical to Extreme Risk Level");
-        $("#riskLevelLow").hide();
-        $("#riskLevelMed").hide();
-      }
+
       if (response.riskLevels.overall === "0") {
-        $("#riskLevelHigh").hide();
-        $("#riskLevelLow").append("Critical to Extreme Risk Level");
-        $("#riskLevelMed").hide();
+        $("#one").hide();
+        $("#twothree").hide();
+        $("#four").hide();
+        $("#five").hide();
       }
       if (response.riskLevels.overall === "1") {
-        $("#riskLevelHigh").hide();
-        $("#riskLevelLow").hide();
-        $("#riskLevelMed").append("Critical to Extreme Risk Level");
+        $("#zero").hide();
+        $("#twothree").hide();
+        $("#four").hide();
+        $("#five").hide();
       }
+      if (response.riskLevels.overall === "2" || "3") {
+        $("#zero").hide();
+        $("#one").hide();
+        $("#four").hide();
+        $("#five").hide();
+      }
+      if (response.riskLevels.overall === "4") {
+        $("#zero").hide();
+        $("#one").hide();
+        $("#twothree").hide();
+        $("#five").hide();
+      }
+      if (response.riskLevels.overall === "5") {
+        $("#zero").hide();
+        $("#one").hide();
+        $("#twothree").hide();
+        $("#five").hide();
+      }
+      
+      $("#cases").append(response.actuals.cases);
+
     });
 
   });
