@@ -18,7 +18,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.json());
-app.use(express.static("public"));
+
 // We need to use sessions to keep track of our user's login status
 app.use(
   session({
@@ -37,20 +37,20 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"),
 app.use(morgan("combined", {
   stream: accessLogStream
 }));
-app.engine("handlebars", exphbs({
-  defaultLayout: "main"
-}));
-app.set("view engine", "handlebars");
-// Requiring our routes
-// require("./routes/html-routes.js")(app);
-// require("./routes/api-routes.js")(app);
 
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+
+// Requiring our routes
 const routes = require("./routes/api-routes");
 app.use(routes);
+app.use(express.static("public"));
+
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
-    // eslint-disable-next-line no-console
     console.log(
       "==> :earth_americas:  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
