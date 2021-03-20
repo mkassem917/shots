@@ -5,14 +5,17 @@ const session = require("express-session");
 const passport = require("./config/passport");
 // Set Handlebars.
 const exphbs = require("express-handlebars");
+
 // stuff for morgan
 const fs = require("fs");
 const morgan = require("morgan");
 const path = require("path");
+
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
-// Creating express app and configuring middleware needed for authentication
+
+// Creating express app
 const app = express();
 app.use(express.urlencoded({
   extended: true
@@ -45,6 +48,8 @@ app.set("view engine", "handlebars");
 
 // Requiring our routes
 const routes = require("./routes/api-routes");
+const htmlRoutes = require("./routes/html-routes");
+htmlRoutes(app); 
 app.use(routes);
 app.use(express.static("public"));
 
