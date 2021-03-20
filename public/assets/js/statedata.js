@@ -5,25 +5,29 @@
 //     if (userId) {
 //       userId = `/?user_id=${1}`;
 //     }
-const userId = "1";
-const key = "7e3bafb672774e49bfa657f1d33be17a";
-// NEED to set up a key for the map itself with process.env variable to pass through the map
-//if you click on the map link in the console log, you will get the api data for the sate
-fetch(`/api/user/${userId}`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log("Success in getting posts:", data);
-    const state = data.state;
-    const user = data.first_name;
+// const userId = "1";
+$(document).ready(() => {
+  const key = "7e3bafb672774e49bfa657f1d33be17a";
+  // NEED to set up a key for the map itself with process.env variable to pass through the map
+  //if you click on the map link in the console log, you will get the api data for the sate
+  
+  // fetch(`/api/user/${userId}`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   .then((response) => response.json())
+  
+  //add a drop down event listener - on change event 
+  
+  // node fetch 
+  const stateInput = $("#state-input");
+
+  stateInput.on("submit", () => {
     const stateData =
-      `https://api.covidactnow.org/v2/state/${state}.json?apiKey=` + key;
+      `https://api.covidactnow.org/v2/state/${stateInput}.json?apiKey=` + key;
     console.log(stateData);
-    $("#userWelcome").append(user); 
 
     $.ajax({
       url: stateData,
@@ -50,5 +54,4 @@ fetch(`/api/user/${userId}`, {
       }
     });
   });
-
-// //}
+});
