@@ -1,5 +1,5 @@
 // Requiring our models and passport as we've configured it
-const db = require("../models/user.js");
+const db = require("../models");
 const express = require("express");
 const router = express.Router();
 
