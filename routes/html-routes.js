@@ -17,7 +17,8 @@ module.exports = (app) => {
       essential_worker: req.body.essential_worker,
     })
       .then((user) => {
-        res.render("userdata", {title: "UserData", person: user });
+        console.log(user.dataValues);
+        res.render("userdata", {title: "UserData", person: user.dataValues });
       })
       .catch((err) => {
         res.status(401).json(err);
