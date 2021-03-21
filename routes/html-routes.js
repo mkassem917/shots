@@ -33,7 +33,7 @@ module.exports = (app) => {
         last_name: "Ross",
         state: "MI",
         age: "30",
-        essential_worker: false,
+        essential_worker: true,
       },
       key: process.env.COVIDACTNOW_API
     });
