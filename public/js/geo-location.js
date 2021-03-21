@@ -1,28 +1,28 @@
-$(document).ready(function() {
+$(document).ready(() => {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
-      function(p) {
+      (p) => {
         showUserDetails(p.coords.latitude, p.coords.longitude);
       },
-      function(e) {
+      (e) => {
         ipLookup();
       }
     );
-  } else ipLookup();
+  } else {ipLookup();}
 });
 
 function showUserDetails(latitude, longitude, additional) {
-  var position = latitude + "," + longitude;
+  const position = latitude + "," + longitude;
 
   $("#latitude").text(latitude);
   $("#longitude").text(longitude);
 
-  var url =
+  const url =
     "https://www.google.com/maps/embed/v1/place?key=AIzaSyBDHRQ1mpF_Jp1SKvGZXgxlnaYuD4pmA2I&q=covid-19+vaccination+clinic," +
     position;
   $("iframe").attr("src", url);
 
-  if (typeof additional != "undefined") {
+  if (typeof additional !== "undefined") {
     $("#country").text(additional.country.name);
     // $("#state").text(additional.state.name);
     $("#city").text(additional.city.name);
@@ -32,7 +32,7 @@ function showUserDetails(latitude, longitude, additional) {
 }
 
 function ipLookup() {
-  $.get("https://api.userinfo.io/userinfos", function(r) {
+  $.get("https://api.userinfo.io/userinfos", (r) => {
     showUserDetails(r.position.latitude, r.position.longitude, r);
   });
 }

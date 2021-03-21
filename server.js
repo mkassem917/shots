@@ -13,6 +13,9 @@ const fs = require("fs");
 const morgan = require("morgan");
 const path = require("path");
 
+// favicon npm package
+const favicon = require('express-favicon');
+
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
@@ -24,7 +27,7 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-// We need to use sessions to keep track of our user's login status
+// // We need to use sessions to keep track of our user's login status - 
 app.use(
   session({
     secret: "keyboard cat",
@@ -32,6 +35,9 @@ app.use(
     saveUninitialized: true
   })
 );
+
+// favicon invoked -tbd trying on handlebars 
+app.use(favicon(path.join(__dirname, "../shots/public/assets/img/favicon.png")));
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
