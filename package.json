@@ -1,11 +1,11 @@
 {
-  "name": "1-Passport-Example",
+  "name": "shots",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
@@ -16,6 +16,7 @@
   "dependencies": {
     "bcryptjs": "2.4.3",
     "express": "^4.17.0",
+    "express-favicon": "^2.0.1",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.16.1",
     "morgan": "^1.10.0",
