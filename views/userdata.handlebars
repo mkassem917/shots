@@ -1,95 +1,49 @@
-<div class="card text-center">
+<div class="row">
+  <h1 class="userName"> {{person.first_name}} {{person.last_name}} </h1>
+  <h2 class="userName"> Welcome to the VAX-Track </h2>
 
-  <div class="card-body">
-    <h2 class="card-title"> {{person.first_name}} </h2>
-    <h3> Welcome to the VAX-Track </h3>
-
-    <h6 class="card-text">Active Cases in {{ person.state }}</span>: <span id="cases"></span></h6>
-
-    {{!-- low --}}
-    <div class="card mb-3" style="max-width: 540px;" id="zero">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="/assets/img/zero.png" class="card-img" alt="zero">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
+</div>
+{{!-- Card with Data --}}
+<div class="row">
+  <div class="col-6">
+    <div class="card" id="caseCard">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="/assets/img/zero.png" class="card-img" id="zero">
+            <img src="/assets/img/one.png" class="card-img" id="one">
+            <img src="/assets/img/twothree.png" class="card-img" id="twothree">
+            <img src="/assets/img/four.png" class="card-img" id="four">
+            <img src="/assets/img/five.png" class="card-img" id="five">
+          </div>
+          <div class="col-md-8">
             <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <h6 class="card-text">Your are in an area with <span id="level"></span> Risk</h6>
             <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-            <h6 class="card-text">Your are in an area with Low Risk</h6>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    {{!-- medium --}}
-    <div class="card mb-3" style="max-width: 540px;" id="one">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="/assets/img/one.png" class="card-img" alt="one">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-            <h6 class="card-text">Your are in an area with Medium Risk</h6>
-          </div>
-        </div>
-      </div>
-    </div>
+  {{!-- Pass in partials here --}}
+  <div class="col-6">
 
-    {{!-- high --}}
-    <div class="card mb-3" style="max-width: 540px;" id="twothree">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="/assets/img/twothree.png" class="card-img" alt="twothree">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-            <h6 class="card-text">Your are in an area with High Risk</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {{!-- very high risk --}}
-    <div class="card mb-3" style="max-width: 540px;" id="four">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="/assets/img/four.png" class="card-img" alt="four">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-            <h6 class="card-text">Your are in an area with a Very High Risk</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {{!-- severe --}}
-    <div class="card mb-3" style="max-width: 540px;" id="five">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="/assets/img/five.png" class="card-img" alt="five">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-            <h6 class="card-text">Your are in an area with Severe Risk</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h6>Are you Eligible?</h6>
+    
+    {{#unless essential_worker}}
+    {{> shots/shots-block essential_worker=false}}
+    {{/unless}}
+   
+    {{#if essential_worker}}
+    {{> shots/map-block essential_worker=true}}
+    {{/if}}
+    
   </div>
 
 </div>
+
+
+
 <script>
 
   $(document).ready(() => {
@@ -100,7 +54,7 @@
 
     const stateData =
       `https://api.covidactnow.org/v2/state/${userState}.json?apiKey=` + key;
-
+    console.log(stateData);
 
     $.ajax({
       url: stateData,
@@ -115,32 +69,37 @@
         $("#twothree").hide();
         $("#four").hide();
         $("#five").hide();
+        $("#level").append("LOW");
       }
       if (response.riskLevels.overall === "1") {
         $("#zero").hide();
         $("#twothree").hide();
         $("#four").hide();
         $("#five").hide();
+        $("#level").append("MEDIUM");
       }
       if (response.riskLevels.overall === "2" || "3") {
         $("#zero").hide();
         $("#one").hide();
         $("#four").hide();
         $("#five").hide();
+        $("#level").append("HIGH");
       }
       if (response.riskLevels.overall === "4") {
         $("#zero").hide();
         $("#one").hide();
         $("#twothree").hide();
         $("#five").hide();
+        $("#level").append("a VERY HIGH ");
       }
       if (response.riskLevels.overall === "5") {
         $("#zero").hide();
         $("#one").hide();
         $("#twothree").hide();
         $("#five").hide();
+        $("#level").append("SEVERE")
       }
-      
+
       $("#cases").append(response.actuals.cases);
 
     });

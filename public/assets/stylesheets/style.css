@@ -12,6 +12,20 @@ img {
   height: 40%; 
 }
 
+.userName {
+  text-align: center; 
+}
+
+#caseCard {
+  height: 50%;
+  text-align: center; 
+}
+
+.row {
+  margin-top: 15px;
+  margin-bottom: 15px; 
+}
+
 /* colors from the mascot image if we like them
   red color: #d34951;
   orange color: #f89f62; 
