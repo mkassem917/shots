@@ -2,3 +2,24 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+.jumbotron{
+  background-color: #79021a; 
+  color: white; 
+  text-align: center; 
+}
+
+img {
+  height: 40%; 
+}
+
+/* colors from the mascot image if we like them
+  red color: #d34951;
+  orange color: #f89f62; 
+  yellow color:  #f6f579; 
+  colors from warning thing 
+  #79021a;
+  #d9002b;
+  #ff9600 
+  #ffc900
+  #00d473
+*/
