@@ -3,34 +3,42 @@
   <h2 class="userName"> Welcome to the VAX-Track </h2>
 
 </div>
+{{!-- Card with Data --}}
 <div class="row">
   <div class="col-6">
-<div class="card" id="caseCard">
-  <div class="card-body">
-    <div class="row">
+    <div class="card" id="caseCard">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="/assets/img/zero.png" class="card-img" id="zero">
+            <img src="/assets/img/one.png" class="card-img" id="one">
+            <img src="/assets/img/twothree.png" class="card-img" id="twothree">
+            <img src="/assets/img/four.png" class="card-img" id="four">
+            <img src="/assets/img/five.png" class="card-img" id="five">
+          </div>
+          <div class="col-md-8">
+            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
+            <h6 class="card-text">Your are in an area with <span id="level"></span> Risk</h6>
+            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="col-md-4">
-  <img src="/assets/img/zero.png" class="card-img" id="zero">
-  <img src="/assets/img/one.png" class="card-img" id="one">
-  <img src="/assets/img/twothree.png" class="card-img" id="twothree">
-  <img src="/assets/img/four.png" class="card-img" id="four">
-  <img src="/assets/img/five.png" class="card-img" id="five">
-</div>
-<div class="col-md-8">
-  <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-  <h6 class="card-text">Your are in an area with <span id="level"></span> Risk</h6>
-  <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+  {{!-- Pass in partials here --}}
+  <div class="col-6">
+    {{#each person}}
+    {{#unless essential_worker}}
+    {{> shots/shots-block essential_worker=true}}
+    {{/unless}}
+    {{/each}}
+  </div>
+
 </div>
 
 
 
-
-</div>
 <script>
 
   $(document).ready(() => {
