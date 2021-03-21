@@ -29,15 +29,12 @@
   {{!-- Pass in partials here --}}
   <div class="col-6">
 
-    
-    {{#unless essential_worker}}
-    {{> shots/shots-block essential_worker=false}}
-    {{/unless}}
-   
-    {{#if essential_worker}}
-    {{> shots/map-block essential_worker=true}}
+    {{#if person.essential_worker}}
+    {{> shots/map-block}}
+    {{else}}
+    {{> shots/shots-block}}
     {{/if}}
-    
+
   </div>
 
 </div>
