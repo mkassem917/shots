@@ -25,19 +25,19 @@ module.exports = (app) => {
       });
   });
 
-  // app.get("/test", (req, res) => {
-  //   res.render("userdata", {
-  //     person: {
-  //       email: "jacqueline@jr.com",
-  //       first_name: "Jacqueline",
-  //       last_name: "Ross",
-  //       state: "MI",
-  //       age: "30",
-  //       essential_worker: false,
-  //     },
-  //     key: process.env.COVIDACTNOW_API
-  //   });
-  // });
+  app.get("/test", (req, res) => {
+    res.render("userdata", {
+      person: {
+        email: "jacqueline@jr.com",
+        first_name: "Jacqueline",
+        last_name: "Ross",
+        state: "MI",
+        age: "30",
+        essential_worker: false,
+      },
+      key: process.env.COVIDACTNOW_API
+    });
+  });
   // fetch("https://httpbin.org/post", {
   //   method: "post",
   //   body: JSON.stringify(body),
