@@ -18,7 +18,11 @@ module.exports = (app) => {
     })
       .then((user) => {
         console.log(user.dataValues);
-        res.render("userdata", { title: "UserData", person: user.dataValues, key: process.env.COVIDACTNOW_API });
+        res.render("userdata", {
+          title: "UserData",
+          person: user.dataValues,
+          key: process.env.COVIDACTNOW_API,
+        });
       })
       .catch((err) => {
         res.status(401).json(err);
@@ -35,48 +39,26 @@ module.exports = (app) => {
         age: "30",
         essential_worker: true,
       },
-      key: process.env.COVIDACTNOW_API
+      key: process.env.COVIDACTNOW_API,
     });
   });
-  // fetch("https://httpbin.org/post", {
-  //   method: "post",
-  //   body: JSON.stringify(body),
-  //   headers: { "Content-Type": "application/json" },
-  // })
-  //   .then((res) => res.json())
-  //   .then((json) => console.log(json));
+
+  app.get("/returning", (req, res) => {
+    res.render("returninguser");
+  });
+
+  app.get("/returning/:email", (req, res) => {
+    db.User.findOne({
+      where: {
+        email: req.params.email,
+      },
+    }).then((user) => {
+      console.log(user);
+      res.render("userdata", {
+        title: "UserData",
+        person: user.dataValues,
+        key: process.env.COVIDACTNOW_API,
+      });
+    });
+  });
 };
-
-// // Requiring path to so we can use relative routes to our HTML files
-// const path = require("path");
-
-// // Requiring our custom middleware for checking if a user is logged in
-// const isAuthenticated = require("../config/middleware/isAuthenticated");
-
-// module.exports = function(app) {
-//   app.get("/", (req, res) => {
-//     // If the user already has an account send them to the members page
-//     if (req.user) {
-//       res.redirect("/members");
-//     }
-//     res.sendFile(path.join(__dirname, "../public/signup.html"));
-//   });
-
-//   app.get("/login", (req, res) => {
-//     // If the user already has an account send them to the members page
-//     if (req.user) {
-//       res.redirect("/members");
-//     }
-//     res.sendFile(path.join(__dirname, "../public/login.html"));
-//   });
-
-//   // Here we've add our isAuthenticated middleware to this route.
-//   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-//   app.get("/members", isAuthenticated, (req, res) => {
-//     res.sendFile(path.join(__dirname, "../public/members.html"));
-//   });
-
-//   app.get("/statedata", (req, res) => {
-//     res.sendFile(path.join(__dirname, "../public/datadisplay.html"));
-//   });
-// };
