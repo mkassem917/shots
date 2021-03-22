@@ -6,9 +6,11 @@ $(document).ready(() => {
       },
       (e) => {
         ipLookup(e);
-      }
+      },
+      console.log("reading if")
     );
   } else {ipLookup();}
+  console.log("reading this main fuction");
 });
 
 function showUserDetails(latitude, longitude, additional) {
@@ -29,12 +31,14 @@ function showUserDetails(latitude, longitude, additional) {
     $("#continent").text(additional.continent.name);
   }
   // console.log(additional.state.name);
+  console.log("show usere deets reading");
 }
 
 function ipLookup() {
   $.get("https://api.userinfo.io/userinfos", (r) => {
     showUserDetails(r.position.latitude, r.position.longitude, r);
   });
+  console.log("ip lookup reading");
 }
 
 // $('#location-button').click(function(){
