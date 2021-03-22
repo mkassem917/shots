@@ -62,13 +62,18 @@ module.exports = (app) => {
     });
   });
 
+  app.get("/state", (req, res) => {
+    res.render("statedata");
+  });
+
   app.get("/state/:state", (req, res) => {
     db.User.findAll({
       where: {
         state: req.params.state,
       },
-    }).then((user) => {
-      res.json(user); 
+    }).then((data) => {
+      res.render("statedata", {person: data}); 
+      res.json(data); 
     });
 
   }); 
