@@ -11,13 +11,11 @@
 $(document).ready(() => {
  
   const loginForm = $("form.login");
-  loginForm.on("submit", (e) => {
-    e.preventDefault(); 
+  loginForm.on("submit", () => {
    let emailParam = $("#email-input").val().trim(); 
    let route = "/returning/" + emailParam
    console.log(route); 
    $(".login").attr("action", route); 
-   console.log(loginForm); 
   });
 });
 </script>
