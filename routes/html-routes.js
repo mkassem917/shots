@@ -38,13 +38,13 @@ module.exports = (app) => {
       key: process.env.COVIDACTNOW_API
     });
   });
-  // fetch("https://httpbin.org/post", {
-  //   method: "post",
-  //   body: JSON.stringify(body),
-  //   headers: { "Content-Type": "application/json" },
-  // })
-  //   .then((res) => res.json())
-  //   .then((json) => console.log(json));
+  
+  app.get("/returning", (req, res) => {
+    res.render("returninguser"); 
+  }); 
+
+
+
 };
 
 // // Requiring path to so we can use relative routes to our HTML files

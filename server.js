@@ -1,7 +1,7 @@
 
 // Requiring necessary npm packages
 const express = require("express");
-const session = require("express-session");
+// const session = require("express-session");
 //const fetch = require('node-fetch');
 
 
@@ -27,14 +27,6 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-// // We need to use sessions to keep track of our user's login status - 
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: true
-  })
-);
 
 // favicon invoked -tbd trying on handlebars 
 app.use(favicon(path.join(__dirname, "../shots/public/assets/img/favicon.png")));
@@ -54,10 +46,12 @@ app.set("view engine", "handlebars");
 
 
 // Requiring our routes
-const routes = require("./routes/api-routes");
+//const routes = require("./routes/api-routes");
 const htmlRoutes = require("./routes/html-routes");
+const apiRoutes = require("./routes/api-routes");
 htmlRoutes(app); 
-app.use(routes);
+apiRoutes(app); 
+//app.use(routes);
 app.use(express.static("public"));
 
 // Syncing our database and logging a message to the user upon success
