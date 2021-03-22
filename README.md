@@ -25,7 +25,7 @@ This app is designed to assist people signing up for their covid-19 vaccine. The
 
 ## deployed-site
 
-[Link to the deployed site]()
+[Link to the deployed site](https://vaccine-app-project2.herokuapp.com/)
 
 ## screenshots
 
