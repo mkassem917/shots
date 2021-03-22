@@ -18,7 +18,11 @@ module.exports = (app) => {
     })
       .then((user) => {
         console.log(user.dataValues);
-        res.render("userdata", { title: "UserData", person: user.dataValues, key: process.env.COVIDACTNOW_API });
+        res.render("userdata", {
+          title: "UserData",
+          person: user.dataValues,
+          key: process.env.COVIDACTNOW_API,
+        });
       })
       .catch((err) => {
         res.status(401).json(err);
@@ -35,16 +39,28 @@ module.exports = (app) => {
         age: "30",
         essential_worker: true,
       },
-      key: process.env.COVIDACTNOW_API
+      key: process.env.COVIDACTNOW_API,
     });
   });
-  
+
   app.get("/returning", (req, res) => {
-    res.render("returninguser"); 
-  }); 
+    res.render("returninguser");
+  });
 
-
-
+  app.get("/returning/:email", (req, res) => {
+    db.User.findOne({
+      where: {
+        email: req.params.email,
+      },
+    }).then((user) => {
+      console.log(user);
+      res.render("userdata", {
+        title: "UserData",
+        person: user.dataValues,
+        key: process.env.COVIDACTNOW_API,
+      });
+    });
+  });
 };
 
 // // Requiring path to so we can use relative routes to our HTML files
