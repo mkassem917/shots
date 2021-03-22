@@ -70,15 +70,20 @@
         <option value="WY">Wyoming</option>
       </select>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Current Age</label>
-      <input type="value" class="form-control" id="age-input" placeholder="Age" name="age">
+    <div>
+      <label for="exampleInputEmail1">Are you currently older than 65?</label><br>
+        <select name="age" id="age-input">
+          <option value="false">No</option>
+          <option value="true">Yes</option>
+      </select><br>
     </div>
-    <label for="essential-input">Are you an essential Worker?</label><br>
-    <select id="essential-input" name="essential_worker">
-      <option value="false">No</option>
-      <option value="true">Yes</option>
-    </select><br>
+    <div>
+      <label for="essential-input">Are you an essential Worker?</label><br>
+      <select id="essential-input" name="essential_worker">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select><br>
+    </div>
     <div style="display: none" id="alert" class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span> <span class="msg"></span>
