@@ -61,4 +61,15 @@ module.exports = (app) => {
       });
     });
   });
+
+  app.get("/state/:state", (req, res) => {
+    db.User.findAll({
+      where: {
+        state: req.params.state,
+      },
+    }).then((user) => {
+      res.json(user); 
+    });
+
+  }); 
 };
