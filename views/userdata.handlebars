@@ -18,8 +18,8 @@
           </div>
           <div class="col-md-8">
             <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-            <h6 class="card-text">Your are in an area with <span id="level"></span> Risk</h6>
             <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+            <p class="card-text">Your are in an area with <span id="level"></span> Risk</p>
           </div>
         </div>
       </div>
@@ -37,17 +37,52 @@
 
   </div>
 
+
 </div>
+{{!-- news ticker --}}
+<div class="row">
 
+  <div class="col-4">
+    <div class="card" class="news">
+      <div class="card-body">
+        <a href="" id="link1">
+          <h5 id="story1"></h5>
+        </a>
+        <img id="img1" src="">
+      </div>
+    </div>
+  </div>
 
+  <div class="col-4">
+    <div class="card" class="news">
+      <div class="card-body">
+        <a href="" id="link2">
+          <h5 id="story2"></h5>
+        </a>
+        <img id="img2" src="">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card" class="news">
+      <div class="card-body">
+        <a href="" id="link3">
+          <h5 id="story3"></h5>
+        </a>
+        <img id="img3" src="">
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <script>
 
   $(document).ready(() => {
+
     const key = "{{key}}";
     const userState = "{{ person.state }}";
-    console.log(userState);
-    // node fetch
 
     const stateData =
       `https://api.covidactnow.org/v2/state/${userState}.json?apiKey=` + key;
@@ -59,7 +94,6 @@
     }).then((response) => {
       console.log(response.url);
       $("#userState").append(response.state);
-
 
       if (response.riskLevels.overall === "0") {
         $("#one").hide();
@@ -101,8 +135,28 @@
 
     });
 
+
+    function news() {
+      const queryURL = "https://newsapi.org/v2/top-headlines?q=Covid&country=us&apiKey=a5b1c2eab3de4e8780f0976d73631779";
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      }).then((response) => {
+        console.log(response.articles[0].title);
+        $("#story1").append(response.articles[0].title);
+        $("#link1").attr("href", response.articles[0].url);
+        $("#img1").attr("src", response.articles[0].urlToImage);
+
+        $("#story2").append(response.articles[1].title);
+        $("#link2").attr("href", response.articles[1].url);
+        $("#img2").attr("src", response.articles[1].urlToImage);
+
+        $("#story3").append(response.articles[2].title);
+        $("#link3").attr("href", response.articles[2].url);
+        $("#img3").attr("src", response.articles[2].urlToImage);
+
+      });
+    };
+    news();
   });
 </script>
-
-{{!--
-<script src="/assets/js/statedata.js"></script> --}}
