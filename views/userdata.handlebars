@@ -44,10 +44,9 @@
 <script>
 
   $(document).ready(() => {
+
     const key = "{{key}}";
     const userState = "{{ person.state }}";
-    console.log(userState);
-    // node fetch
 
     const stateData =
       `https://api.covidactnow.org/v2/state/${userState}.json?apiKey=` + key;
@@ -59,7 +58,6 @@
     }).then((response) => {
       console.log(response.url);
       $("#userState").append(response.state);
-
 
       if (response.riskLevels.overall === "0") {
         $("#one").hide();
@@ -103,6 +101,3 @@
 
   });
 </script>
-
-{{!--
-<script src="/assets/js/statedata.js"></script> --}}
