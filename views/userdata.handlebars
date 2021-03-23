@@ -140,7 +140,9 @@
     });
 
     function news() {
-      const queryURL = "https://newsapi.org/v2/top-headlines?q=Covid&country=us&apiKey=4c69d7118754493f9e6163e5daa1d3cc";
+
+      const queryURL = "https://newsapi.org/v2/top-headlines?q=Covid&country=us&apiKey=process.env.NEWS_API";
+
       $.ajax({
         url: queryURL,
         method: "GET",
