@@ -72,7 +72,8 @@ module.exports = (app) => {
         state: req.params.state,
       },
     }).then((data) => {
-      res.render("statedata", {person: data}); 
+      console.log(data);
+      res.render("vaccinedata", {users: data}); 
       res.json(data); 
     });
 
