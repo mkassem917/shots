@@ -1,13 +1,16 @@
-# readme
+# Vax-Track
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## Description
 
-This app is designed to assist people signing up for their covid-19 vaccine. There is a sign up page for the user to input their information, including email adress, name, state of residence, age, and if they are an essential worker. This information is then stored in a database. After the user is signed up, they are taken to a page that displays their state's statistics concerning covid-19. If the user is eligible for the vaccine, there will be an embedded map with the closest vaccine clinic.
+This app is designed to assist people signing up for their COVID-19 vaccine. There is a sign up page for the user to input their information, including name, email, state of residence as well as verifying their age and if they are an essential worker. This information is then stored in a database. After the user is signed up, they are taken to a page that displays their state's statistics concerning COVID-19. If the user is eligible for the vaccine, there will be an embedded map with the closest vaccine clinic.
+
 
 ## Table of Contents
 
-* [Deployed-Site](#deployed-site)
+* [Directory Structure](#directory-structure) 
+
+* [Deployed-Sites](#deployed-site)
 
 * [Screenshots](#screenshots)
 
@@ -23,11 +26,76 @@ This app is designed to assist people signing up for their covid-19 vaccine. The
  
 * [Questions](#questions) 
 
-## deployed-site
 
-[Link to the deployed site](https://vaccine-app-project2.herokuapp.com/)
+## Directory structure
+```
+SHOTS.
+├── config
+│   ├── config.json
+│ 
+├── db
+│   ├── schema.sql
+│   └── userseeds.sql
+│
+├── models
+│   ├── index.js
+│   └── user.js
+│ 
+├── node_modules
+│ 
+├── public
+│   └── assets
+│      ├── img
+│      │   └── favicon.png
+│      │   └── five.png
+│      │   └── four.png
+│      │   └── one.png
+│      │   └── stopthespread.png
+│      │   └── twothree.png
+│      │   └── vaxynepng.png
+│      │   └── zero.png
+│      └── js
+│      │   └── geo-location.js
+│      │   └── returninguser.js
+│      │   └── signup.js
+│      └── stylesheets
+│          └── style.css
+│
+├── models
+│   ├── api-routes.js
+│   └── html-routes.js
+│   
+├── views
+│   └── layouts
+│         └── main.handlebars
+│   └── partials
+│         └── map-block.handlebars
+│         └── shots-block.handlebars
+│   ├── index.handlebars
+│   └── returninguser.handlebars
+│   └── userdata.handlebars
+│   └── vaccinedata.handlebars
+│
+├── .eslintrc.json
+├── .gitignore
+├── .travis.yml
+├── access log
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── README.md
+├── server.js
+│
+```
+## Heroku 
 
-## screenshots
+[Link to Heroku App](https://vaccine-app-project2.herokuapp.com/)
+
+## GitHub Repository 
+
+[Link to GitHub](https://github.com/mkassem917/shots.git)
+
+## Screenshots
 
 ![Screenshot 1]()
 ![Screenshot 2]()
@@ -44,9 +112,9 @@ npm install
 
 ## Usage
 
-Use this app to keep tracking of people looking to get vaccinated and to stay up to day on the latest covid-19 trends for your state.
+Use this app to keep tracking of people looking to get vaccinated and to stay up to day on the latest COVID-19 trends for your state.
 
-This app also utilizes Morgan. Morgan is a http request tracker. It currently logs every http request with the status, response time, and what operating system the user utilizes.
+This app also utilizes Morgan. Morgan is a http request tracker. It currently logs every http request with the status, response time, and what operating system the user utilizes. 
 
 ## License
 
