@@ -72,10 +72,9 @@ module.exports = app => {
       where: {
         state: req.params.state,
       },
-    }).then((data) => {
-      console.log(data);
-      res.render("vaccinedata", {users: data}); 
-      res.json(data); 
+    }).then((user) => {
+      console.log(user);
+      res.render("vaccinedata", {person: user});
     });
   });
 };
