@@ -1,7 +1,8 @@
 <div class="col-6">
-
-    {{#each users}} 
-    {{> shots/vaccine-block }}
+<ul>
+    {{#each person}} 
+  <li> {{dataValues.first_name}} {{dataValues.age}} </li>
     {{/each}}
-
+</ul>
+    
 </div>
