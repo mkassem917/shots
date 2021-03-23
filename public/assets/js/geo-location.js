@@ -1,16 +1,18 @@
 $(document).ready(() => {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
-      (p) => {
+      p => {
         showUserDetails(p.coords.latitude, p.coords.longitude);
       },
-      (e) => {
+      e => {
         ipLookup(e);
       },
       console.log("reading if")
     );
-  } else {ipLookup();}
-  console.log("reading this main fuction");
+  } else {
+    ipLookup();
+  }
+  console.log("reading this main function");
 });
 
 function showUserDetails(latitude, longitude, additional) {
@@ -26,34 +28,14 @@ function showUserDetails(latitude, longitude, additional) {
 
   if (typeof additional !== "undefined") {
     $("#country").text(additional.country.name);
-    // $("#state").text(additional.state.name);
     $("#city").text(additional.city.name);
     $("#continent").text(additional.continent.name);
   }
-  // console.log(additional.state.name);
-  console.log("show usere deets reading");
 }
 
 function ipLookup() {
-  $.get("https://api.userinfo.io/userinfos", (r) => {
+  $.get("https://api.userinfo.io/userinfos", r => {
     showUserDetails(r.position.latitude, r.position.longitude, r);
   });
   console.log("ip lookup reading");
 }
-
-// $('#location-button').click(function(){
-
-//   if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(function(position){
-//         console.log(position);
-//         $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng="+ position.coords.latitude + "," + position.coords.longitude +"&sensor=false", function(data) {
-//           console.log(data);
-//         })
-//         var img = new Image();
-//         img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=800x400&sensor=false";
-//         $('#output').html(img);
-//       });
-
-//   }
-
-// });

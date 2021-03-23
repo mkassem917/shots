@@ -1,6 +1,6 @@
 const db = require("../models");
 
-module.exports = (app) => {
+module.exports = app => {
   // Home page (Sign-up Form)
   app.get("/", (req, res) => {
     res.render("index", { title: "vaccine" });
@@ -14,21 +14,22 @@ module.exports = (app) => {
       last_name: req.body.last_name,
       state: req.body.state,
       age: req.body.age,
-      essential_worker: req.body.essential_worker,
+      essential_worker: req.body.essential_worker
     })
-      .then((user) => {
+      .then(user => {
         console.log(user.dataValues);
         res.render("userdata", {
           title: "UserData",
           person: user.dataValues,
-          key: process.env.COVIDACTNOW_API,
+          key: process.env.COVIDACTNOW_API
         });
       })
-      .catch((err) => {
+      .catch(err => {
         res.status(401).json(err);
       });
   });
 
+  // will be deleted after app is done
   app.get("/test", (req, res) => {
     res.render("userdata", {
       person: {
@@ -37,9 +38,9 @@ module.exports = (app) => {
         last_name: "Ross",
         state: "MI",
         age: "30",
-        essential_worker: true,
+        essential_worker: true
       },
-      key: process.env.COVIDACTNOW_API,
+      key: process.env.COVIDACTNOW_API
     });
   });
 
@@ -50,15 +51,30 @@ module.exports = (app) => {
   app.get("/returning/:email", (req, res) => {
     db.User.findOne({
       where: {
-        email: req.params.email,
-      },
-    }).then((user) => {
+        email: req.params.email
+      }
+    }).then(user => {
       console.log(user);
       res.render("userdata", {
         title: "UserData",
         person: user.dataValues,
-        key: process.env.COVIDACTNOW_API,
+        key: process.env.COVIDACTNOW_API
       });
+    });
+  });
+
+  app.get("/state", (req, res) => {
+    res.render("statedata");
+  });
+
+  app.get("/state/:state", (req, res) => {
+    db.User.findAll({
+      where: {
+        state: req.params.state,
+      },
+    }).then((user) => {
+      console.log(user);
+      res.render("vaccinedata", {person: user});
     });
   });
 };

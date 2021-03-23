@@ -1,9 +1,5 @@
-
 // Requiring necessary npm packages
 const express = require("express");
-// const session = require("express-session");
-//const fetch = require('node-fetch');
-
 
 // Set Handlebars.
 const exphbs = require("express-handlebars");
@@ -27,9 +23,8 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-
 // favicon invoked -tbd trying on handlebars 
-app.use(favicon(path.join(__dirname, "../shots/public/assets/img/favicon.png")));
+app.use(favicon(path.join(__dirname, "./public/assets/img/favicon.png")));
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
@@ -46,12 +41,11 @@ app.set("view engine", "handlebars");
 
 
 // Requiring our routes
-//const routes = require("./routes/api-routes");
+
 const htmlRoutes = require("./routes/html-routes");
 const apiRoutes = require("./routes/api-routes");
 htmlRoutes(app); 
 apiRoutes(app); 
-//app.use(routes);
 app.use(express.static("public"));
 
 // Syncing our database and logging a message to the user upon success
