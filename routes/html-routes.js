@@ -70,11 +70,12 @@ module.exports = app => {
   app.get("/state/:state", (req, res) => {
     db.User.findAll({
       where: {
-        state: req.params.state
-      }
-    }).then(data => {
-      res.render("statedata", { person: data });
-      res.json(data);
+        state: req.params.state,
+      },
+    }).then((data) => {
+      console.log(data);
+      res.render("vaccinedata", {users: data}); 
+      res.json(data); 
     });
   });
 };
