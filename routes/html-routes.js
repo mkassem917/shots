@@ -54,7 +54,7 @@ module.exports = (app) => {
         last_name: "Ross",
         state: "MI",
         age: "30",
-        essential_worker: true,
+        essential_worker: false,
       },
       key: process.env.COVIDACTNOW_API,
     });
