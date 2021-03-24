@@ -24,7 +24,8 @@ function showUserDetails(latitude, longitude, additional) {
   const url =
     "https://www.google.com/maps/embed/v1/place?key=process.env.MAP_API&q=covid-19+vaccination+clinic," +
     position;
-  $("iframe").attr("src", url);
+  
+  $("iframe").attr("src", url); 
 
   if (typeof additional !== "undefined") {
     $("#country").text(additional.country.name);
