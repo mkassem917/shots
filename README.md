@@ -97,12 +97,11 @@ SHOTS.
 
 ## Screenshots
 
-![Screenshot 1]()
-![Screenshot 2]()
-![Screenshot 3]()
-![Screenshot 4]()
-![Screenshot 5]()
-![Screenshot 6]()
+![Screenshot 1](public/assets/img/sshome.png)
+![Screenshot 2](public/assets/img/ssreturn.png)
+![Screenshot 3](public/assets/img/ssspread.png)
+![Screenshot 4](public/assets/img/ssstate.png)
+![Screenshot 5](public/assets/img/ssshot.png)
 
 
 ## Installation
