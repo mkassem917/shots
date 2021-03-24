@@ -22,7 +22,7 @@ function showUserDetails(latitude, longitude, additional) {
   $("#longitude").text(longitude);
 
   const url =
-    "https://www.google.com/maps/embed/v1/place?key=process.env.MAP_API=covid-19+vaccination+clinic," +
+    "https://www.google.com/maps/embed/v1/place?key=process.env.MAP_API&q=covid-19+vaccination+clinic," +
     position;
   $("iframe").attr("src", url);
 

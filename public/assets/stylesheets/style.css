@@ -94,6 +94,16 @@ li {
   font-size: 30px; 
 }
 
+#returnBtn,
+#newUser {
+  margin: 0;
+  position: relative;
+  display: block;
+  top: 10%;
+  left: 56%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
 .card {
   border: white; 
 }
@@ -102,20 +112,3 @@ li {
   font-size: 27px; 
   text-align: center;
 }
-
-/* colors from the mascot image if we like them
-  red color: #d34951;
-  orange color: #f89f62; 
-  yellow color:  #f6f579; 
-  colors from warning thing 
-  #79021a;
-  #d9002b;
-  #ff9600 
-  #ffc900
-  #00d473
-
-font families downloaded 
-font-family: 'Amatic SC', cursive;
-font-family: 'Arsenal', sans-serif;
-font-family: 'Open Sans Condensed', sans-serif;
-*/
