@@ -103,7 +103,8 @@ li {
   left: 56%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  
+}
+
 .card {
   border: white; 
 }
