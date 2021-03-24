@@ -1,11 +1,44 @@
+.jumbotron{
+  background-color: #4dc6fb; 
+  color: white; 
+  text-align: center; 
+}
+
+#title {
+  font-family: 'Amatic SC', cursive;
+  font-size: 90px; 
+}
+
+.lead{ 
+  font-size: 30px; 
+}
+
+body {
+font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#signup, #welcome, #statedata {
+  text-align: center; 
+  font-size: 45px;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
+  font-size: 20px; 
 }
-.jumbotron{
-  background-color: #79021a; 
+
+.btn{
+  background-color: #4dc6fb;
   color: white; 
   text-align: center; 
+  border: white; 
+  font-size: 20px; 
+}
+
+.btn:hover{
+  background-color: #d34951; 
+  color: white;
 }
 
 img {
@@ -21,6 +54,7 @@ img {
 
 #stop {
   text-align: center; 
+  font-size: 40px;
   margin-bottom: 15px; 
 }
 
@@ -47,6 +81,18 @@ img {
 
 }
 
+#maptitle {
+  text-align: center; 
+}
+
+#mapsub {
+  text-align: center; 
+  font-size: 20px;
+}
+
+li {
+  font-size: 30px; 
+}
 /* colors from the mascot image if we like them
   red color: #d34951;
   orange color: #f89f62; 
@@ -57,4 +103,9 @@ img {
   #ff9600 
   #ffc900
   #00d473
+
+font families downloaded 
+font-family: 'Amatic SC', cursive;
+font-family: 'Arsenal', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
 */

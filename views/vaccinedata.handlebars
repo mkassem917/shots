@@ -1,9 +1,15 @@
+<div class="row">
+  <h1 id="statedata">People Signed-Up in Your State to get Vax'd</h1>
 <div class="col-6" id="vaccinedata">
-  <p>List below shows first names for other Vax-Track users in your state</p>
 <ul>
     {{#each person}} 
   <li> {{dataValues.first_name}} {{dataValues.last_name}} </li>
     {{/each}}
 </ul>
-    
+</div>
+
+<div class="col-6">
+  <p>something fancy here</p>
+</div>
+
 </div>
