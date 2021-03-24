@@ -3,30 +3,30 @@
   <h2 class="userName"> Welcome to the VAX-Track </h2>
 
 </div>
-{{!-- Card with Data --}}
 <div class="row">
-  <div class="col-6">
-    <div class="card" id="caseCard">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="/assets/img/zero.png" class="card-img" id="zero">
-            <img src="/assets/img/one.png" class="card-img" id="one">
-            <img src="/assets/img/twothree.png" class="card-img" id="twothree">
-            <img src="/assets/img/four.png" class="card-img" id="four">
-            <img src="/assets/img/five.png" class="card-img" id="five">
-          </div>
-          <div class="col-md-8">
-            <h4 class="card-title">{{ person.state }} - Risk Level</h4>
-            <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
-            <p class="card-text">Your are in an area with <span id="level"></span> Risk</p>
-            <button type="button" class="btn btn-danger" onclick="window.location.href='/state/{{person.state}}'">People
-              in {{person.state}} on the VAX TRACK</button>
-          </div>
+  {{!-- Card with Data --}}
+  <div class="card mb-3" style="max-width: 540px;" >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="/assets/img/zero.png" class="img-fluid" id="zero">
+        <img src="/assets/img/one.png" class="img-fluid" id="one">
+        <img src="/assets/img/twothree.png" class="img-fluid" id="twothree">
+        <img src="/assets/img/four.png" class="img-fluid" id="four">
+        <img src="/assets/img/five.png" class="img-fluid" id="five">
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body" id="data">
+          <p class="card-title">{{ person.state }} - Risk Level</p>
+          <p class="card-text">There are <span id="cases"></span> active cases in your state.</p>
+          <p class="card-text">Your are in an area with <span id="level"></span> Risk</p>
+          <button type="button" class="btn btn-danger" onclick="window.location.href='/state/{{person.state}}'">People
+            in {{person.state}} on the VAX TRACK</button>
         </div>
       </div>
     </div>
   </div>
+
 
   {{!-- Pass in partials here --}}
   <div class="col-6">
@@ -38,9 +38,8 @@
     {{/if}}
 
   </div>
-
-
 </div>
+
 {{!-- news ticker --}}
 <div class="row">
 
@@ -50,7 +49,7 @@
         <a href="" id="link1">
           <h5 id="story1"></h5>
         </a>
-        <img id="img1" src="">
+        <img id="img1" src="" class="img-fluid">
       </div>
     </div>
   </div>
@@ -61,7 +60,7 @@
         <a href="" id="link2">
           <h5 id="story2"></h5>
         </a>
-        <img id="img2" src="">
+        <img id="img2" src="" class="img-fluid">
       </div>
     </div>
   </div>
@@ -72,7 +71,7 @@
         <a href="" id="link3">
           <h5 id="story3"></h5>
         </a>
-        <img id="img3" src="">
+        <img id="img3" src="" class="img-fluid">
       </div>
     </div>
   </div>
@@ -162,7 +161,7 @@
 
       });
     };
-  news();
+    news();
 
 
 
